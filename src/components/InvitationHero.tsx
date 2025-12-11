@@ -9,7 +9,7 @@ const InvitationHero = () => {
   };
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-12 kraft-texture">
+    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-12">
       <div className="max-w-4xl w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
         {/* Polaroid Photo */}
         <div className="polaroid-frame animate-fade-in">
