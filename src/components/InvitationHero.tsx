@@ -1,4 +1,4 @@
-import sunsetPhoto from "@/assets/sunset-photo.jpg";
+import fotoCasillas from "@/assets/foto casillas.jpg";
 import { MapPin } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -14,8 +14,8 @@ const InvitationHero = () => {
         {/* Polaroid Photo */}
         <div className="polaroid-frame animate-fade-in">
           <img
-            src={sunsetPhoto}
-            alt="Atardecer con árbol"
+            src={fotoCasillas}
+            alt="Foto casillas"
             className="w-64 h-48 md:w-80 md:h-60 object-cover"
           />
         </div>
