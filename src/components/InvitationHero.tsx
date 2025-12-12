@@ -9,14 +9,14 @@ const InvitationHero = () => {
   };
 
   return (
-    <section className="min-h-[120vh] flex flex-col items-center justify-center px-4 py-12">
+    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-4">
       <div className="max-w-4xl w-full flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
         {/* Polaroid Photo */}
-        <div className="polaroid-frame animate-fade-in">
+        <div className="polaroid-frame animate-fade-in flex-1 flex justify-center">
           <img
             src={fotoCasillas}
             alt="Foto casillas"
-            className="w-80 h-60 md:w-96 md:h-72 object-cover"
+            className="w-full h-auto max-w-md md:max-w-lg lg:max-w-xl object-cover"
           />
         </div>
 

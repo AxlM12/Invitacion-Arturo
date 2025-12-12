@@ -4,7 +4,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import InvitationHero from "@/components/InvitationHero";
 import RSVPForm from "@/components/RSVPForm";
-import backgroundImage from "@/assets/Backgorund.jpg";
 
 const queryClient = new QueryClient();
 
@@ -14,8 +13,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <main
-        className="min-h-screen bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
+        className="min-h-screen bg-background"
       >
         <InvitationHero />
         <RSVPForm />
