@@ -58,7 +58,7 @@ const InvitationHero = () => {
             Ver ubicación
           </Button>
 
-          <p className="mt-8 font-body text-foreground text-x4 italic">
+          <p className="mt-8 font-body text-foreground text-xl italic">
             Favor de confirmar asistencia
           </p>
         </div>
