@@ -67,7 +67,7 @@ const RSVPForm = () => {
         console.error('Error inserting data:', error);
         toast({
           title: "Error",
-          description: "No se pudo registrar la asistencia. Inténtalo de nuevo.",
+          description: `No se pudo registrar la asistencia: ${error.message}`,
           variant: "destructive",
         });
       } else {
@@ -80,9 +80,10 @@ const RSVPForm = () => {
       }
     } catch (err) {
       console.error('Unexpected error:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Error desconocido';
       toast({
         title: "Error",
-        description: "Ocurrió un error inesperado. Inténtalo de nuevo.",
+        description: `Ocurrió un error inesperado: ${errorMessage}`,
         variant: "destructive",
       });
     } finally {
