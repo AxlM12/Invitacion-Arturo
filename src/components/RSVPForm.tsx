@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { UserPlus, UserMinus, Send, Users } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from '@/lib/supabase';
 
 interface Attendee {
   nombre: string;
@@ -35,7 +36,7 @@ const RSVPForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate required fields
     const isValid = attendees.every(
       (a) => a.nombre.trim() !== ""
@@ -52,29 +53,41 @@ const RSVPForm = () => {
 
     setIsSubmitting(true);
 
-    // Format email body
-    const attendeesList = attendees
-      .map(
-        (a, i) =>
-          `Asistente ${i + 1}:\n  Nombre: ${a.nombre}`
-      )
-      .join("\n\n");
+    try {
+      // Insert each attendee as a separate row in the "Invitados" table
+      const inserts = attendees.map(attendee => ({
+        nombre: attendee.nombre.trim(),
+      }));
 
-    const subject = encodeURIComponent("Confirmación de Asistencia - Cumpleaños de Arturo");
-    const body = encodeURIComponent(
-      `¡Hola!\n\nConfirmo mi asistencia al cumpleaños de Arturo Macedo el 15 de Diciembre.\n\nNúmero de asistentes: ${attendees.length}\n\n${attendeesList}\n\n¡Nos vemos pronto!`
-    );
+      const { data, error } = await supabase
+        .from('Invitados')
+        .insert(inserts);
 
-    // Open email client
-    const email = "tu-email@ejemplo.com"; // Replace with actual email
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-
-    toast({
-      title: "¡Gracias por confirmar!",
-      description: "Se abrirá tu cliente de correo para enviar la confirmación.",
-    });
-
-    setIsSubmitting(false);
+      if (error) {
+        console.error('Error inserting data:', error);
+        toast({
+          title: "Error",
+          description: "No se pudo registrar la asistencia. Inténtalo de nuevo.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "¡Gracias por confirmar!",
+          description: "Tu asistencia ha sido registrada exitosamente.",
+        });
+        // Reset the form
+        setAttendees([{ nombre: "" }]);
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      toast({
+        title: "Error",
+        description: "Ocurrió un error inesperado. Inténtalo de nuevo.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
