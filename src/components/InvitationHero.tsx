@@ -16,36 +16,36 @@ const InvitationHero = () => {
           <img
             src={fotoCasillas}
             alt="Foto casillas"
-            className="w-64 h-48 md:w-80 md:h-60 object-cover"
+            className="w-80 h-60 md:w-96 md:h-72 object-cover"
           />
         </div>
 
         {/* Invitation Text */}
         <div className="flex-1 text-center lg:text-left animate-slide-up" style={{ animationDelay: "0.2s" }}>
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl italic text-foreground mb-6 text-shadow-soft">
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl italic text-foreground mb-6 text-shadow-soft">
             15 de Diciembre
           </h1>
-          
-          <p className="font-body text-lg md:text-xl text-foreground/80 mb-8 leading-relaxed">
+
+          <p className="font-body text-xl md:text-2xl text-foreground/80 mb-8 leading-relaxed">
             Los momentos importantes de la vida son mejores cuando se comparten con la familia y amigos.
             <br />
             <span className="italic">Te invito a acompañarnos a festejar:</span>
           </p>
 
           <div className="space-y-4 mb-8">
-            <h2 className="font-display text-3xl md:text-4xl text-foreground">
+            <h2 className="font-display text-4xl md:text-5xl text-foreground">
               El cumpleaños de
             </h2>
-            <h3 className="font-display text-4xl md:text-5xl font-semibold text-primary">
+            <h3 className="font-display text-5xl md:text-6xl font-semibold text-primary">
               Arturo Macedo
             </h3>
           </div>
 
           <div className="space-y-2 mb-8">
-            <p className="font-display text-3xl md:text-4xl text-foreground">
+            <p className="font-display text-4xl md:text-5xl text-foreground">
               2:30 PM
             </p>
-            <p className="font-display text-2xl md:text-3xl text-foreground">
+            <p className="font-display text-3xl md:text-4xl text-foreground">
               En: La terraza de Betty y Beto
             </p>
           </div>
@@ -58,7 +58,7 @@ const InvitationHero = () => {
             Ver ubicación
           </Button>
 
-          <p className="mt-8 font-body text-muted-foreground italic">
+          <p className="mt-8 font-body text-foreground text-x4 italic">
             Favor de confirmar asistencia
           </p>
         </div>
