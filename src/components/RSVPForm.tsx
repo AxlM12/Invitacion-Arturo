@@ -7,19 +7,17 @@ import { toast } from "@/hooks/use-toast";
 
 interface Attendee {
   nombre: string;
-  edad: string;
-  telefono: string;
 }
 
 const RSVPForm = () => {
   const [attendees, setAttendees] = useState<Attendee[]>([
-    { nombre: "", edad: "", telefono: "" },
+    { nombre: "" },
   ]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const addAttendee = () => {
     if (attendees.length < 10) {
-      setAttendees([...attendees, { nombre: "", edad: "", telefono: "" }]);
+      setAttendees([...attendees, { nombre: "" }]);
     }
   };
 
@@ -40,13 +38,13 @@ const RSVPForm = () => {
     
     // Validate required fields
     const isValid = attendees.every(
-      (a) => a.nombre.trim() !== "" && a.edad.trim() !== ""
+      (a) => a.nombre.trim() !== ""
     );
 
     if (!isValid) {
       toast({
         title: "Campos incompletos",
-        description: "Por favor completa el nombre y edad de todos los asistentes.",
+        description: "Por favor completa el nombre de todos los asistentes.",
         variant: "destructive",
       });
       return;
@@ -58,7 +56,7 @@ const RSVPForm = () => {
     const attendeesList = attendees
       .map(
         (a, i) =>
-          `Asistente ${i + 1}:\n  Nombre: ${a.nombre}\n  Edad: ${a.edad}\n  Teléfono: ${a.telefono || "No proporcionado"}`
+          `Asistente ${i + 1}:\n  Nombre: ${a.nombre}`
       )
       .join("\n\n");
 
@@ -147,7 +145,7 @@ const RSVPForm = () => {
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor={`nombre-${index}`} className="font-body">
                       Nombre <span className="text-accent">*</span>
@@ -160,37 +158,6 @@ const RSVPForm = () => {
                       onChange={(e) => updateAttendee(index, "nombre", e.target.value)}
                       className="font-body bg-card"
                       required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor={`edad-${index}`} className="font-body">
-                      Edad <span className="text-accent">*</span>
-                    </Label>
-                    <Input
-                      id={`edad-${index}`}
-                      type="number"
-                      placeholder="Edad"
-                      min="1"
-                      max="120"
-                      value={attendee.edad}
-                      onChange={(e) => updateAttendee(index, "edad", e.target.value)}
-                      className="font-body bg-card"
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor={`telefono-${index}`} className="font-body">
-                      Teléfono <span className="text-muted-foreground">(opcional)</span>
-                    </Label>
-                    <Input
-                      id={`telefono-${index}`}
-                      type="tel"
-                      placeholder="Número de teléfono"
-                      value={attendee.telefono}
-                      onChange={(e) => updateAttendee(index, "telefono", e.target.value)}
-                      className="font-body bg-card"
                     />
                   </div>
                 </div>
